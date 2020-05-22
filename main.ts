@@ -1,5 +1,29 @@
+namespace myTiles {
+    //% blockIdentity=images._tile
+    export const tile0 = img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`
+}
 controller.right.onEvent(ControllerButtonEvent.Repeated, function () {
     Canon.x += 4
+})
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    Canon.x += -4
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     Canon_ball = sprites.createProjectileFromSprite(img`
@@ -21,6 +45,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . . . . . . . . . . . 
 `, Canon, 0, -50)
     Canon_ball.setVelocity(0, -50)
+    pause(1500)
+})
+controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
+    Canon.x += 4
 })
 controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
     Canon.x += -4
@@ -167,4 +195,4 @@ Canon = sprites.create(img`
 . f f f f f f f f f f f f f f . 
 . . f f f f f f f f f f f f . . 
 `, SpriteKind.Player)
-Canon.y = 112
+Canon.y = 114
