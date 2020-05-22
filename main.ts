@@ -1,3 +1,6 @@
+namespace SpriteKind {
+    export const wall = SpriteKind.create()
+}
 namespace myTiles {
     //% blockIdentity=images._tile
     export const tile0 = img`
@@ -196,3 +199,105 @@ Canon = sprites.create(img`
 . . f f f f f f f f f f f f . . 
 `, SpriteKind.Player)
 Canon.y = 114
+let helicopter = sprites.create(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . f f f f f f f f f f f f f f 
+. . . . . . . . f f f . . . . . 
+. . . . . . f f f f f f 8 8 . . 
+f . f . . f f f f f f f 8 8 8 . 
+. f f f f f f f f f f f 8 8 8 8 
+f . f . f f f f f f f f f f f f 
+. . . . . f f f f f f f f f f . 
+. . . . . . f f f f f f f f . . 
+. . . . . . . f . . . . f . . . 
+. . . . f f . f . . . . f . f f 
+. . . . . f f f f f f f f f f . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+helicopter.y = 8
+let left_wall = sprites.create(img`
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+3 . . . . . . . . . . . . . . . 
+`, SpriteKind.wall)
+left_wall.setPosition(0, 8)
+let right_wall = sprites.create(img`
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+. . . . . . . . . . . . . . . 3 
+`, SpriteKind.wall)
+right_wall.setPosition(155, 8)
+forever(function () {
+    if (helicopter.overlapsWith(right_wall)) {
+        helicopter.setImage(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+f f f f f f f f f f f f f f . . 
+. . . . . f f f . . . . . . . . 
+. . 8 f f f f f f f . . . . . . 
+. 8 8 f f f f f f f f . . f . f 
+8 8 8 f f f f f f f f f f f f . 
+f f f f f f f f f f f f . f . f 
+. f f f f f f f f f f . . . . . 
+. . f f f f f f f f . . . . . . 
+. . . f . . . . f . . . . . . . 
+f f . f . . . . f . f f . . . . 
+. f f f f f f f f f f . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+        helicopter.setVelocity(-40, 0)
+    } else if (helicopter.overlapsWith(left_wall)) {
+        helicopter.setImage(img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . f f f f f f f f f f f f f f 
+. . . . . . . . f f f . . . . . 
+. . . . . . f f f f f f 8 8 . . 
+f . f . . f f f f f f f 8 8 8 . 
+. f f f f f f f f f f f 8 8 8 8 
+f . f . f f f f f f f f f f f f 
+. . . . . f f f f f f f f f f . 
+. . . . . . f f f f f f f f . . 
+. . . . . . . f . . . . f . . . 
+. . . . f f . f . . . . f . f f 
+. . . . . f f f f f f f f f f . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`)
+        helicopter.setVelocity(40, 0)
+    } else {
+        helicopter.setVelocity(40, 0)
+    }
+})
