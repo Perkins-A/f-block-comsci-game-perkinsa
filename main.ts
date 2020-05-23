@@ -199,6 +199,7 @@ Canon = sprites.create(img`
 . . f f f f f f f f f f f f . . 
 `, SpriteKind.Player)
 Canon.y = 114
+Canon.setFlag(SpriteFlag.StayInScreen, true)
 let helicopter = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -217,6 +218,7 @@ f . f . f f f f f f f f f f f f
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Enemy)
+helicopter.setPosition(0, 8)
 helicopter.y = 8
 let left_wall = sprites.create(img`
 3 . . . . . . . . . . . . . . . 
@@ -297,43 +299,5 @@ f . f . f f f f f f f f f f f f
 . . . . . . . . . . . . . . . . 
 `)
         helicopter.setVelocity(40, 0)
-    } else if (helicopter.image == img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . f f f f f f f f f f f f f f 
-. . . . . . . . f f f . . . . . 
-. . . . . . f f f f f f 8 8 . . 
-f . f . . f f f f f f f 8 8 8 . 
-. f f f f f f f f f f f 8 8 8 8 
-f . f . f f f f f f f f f f f f 
-. . . . . f f f f f f f f f f . 
-. . . . . . f f f f f f f f . . 
-. . . . . . . f . . . . f . . . 
-. . . . f f . f . . . . f . f f 
-. . . . . f f f f f f f f f f . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`) {
-        helicopter.setVelocity(40, 0)
-    } else if (helicopter.image == img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-f f f f f f f f f f f f f f . . 
-. . . . . f f f . . . . . . . . 
-. . 8 f f f f f f f . . . . . . 
-. 8 8 f f f f f f f f . . f . f 
-8 8 8 f f f f f f f f f f f f . 
-f f f f f f f f f f f f . f . f 
-. f f f f f f f f f f . . . . . 
-. . f f f f f f f f . . . . . . 
-. . . f . . . . f . . . . . . . 
-f f . f . . . . f . f f . . . . 
-. f f f f f f f f f f . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`) {
-        helicopter.setVelocity(-40, 0)
     }
 })
