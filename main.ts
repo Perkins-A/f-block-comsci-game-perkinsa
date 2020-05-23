@@ -297,7 +297,43 @@ f . f . f f f f f f f f f f f f
 . . . . . . . . . . . . . . . . 
 `)
         helicopter.setVelocity(40, 0)
-    } else {
+    } else if (helicopter.image == img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . f f f f f f f f f f f f f f 
+. . . . . . . . f f f . . . . . 
+. . . . . . f f f f f f 8 8 . . 
+f . f . . f f f f f f f 8 8 8 . 
+. f f f f f f f f f f f 8 8 8 8 
+f . f . f f f f f f f f f f f f 
+. . . . . f f f f f f f f f f . 
+. . . . . . f f f f f f f f . . 
+. . . . . . . f . . . . f . . . 
+. . . . f f . f . . . . f . f f 
+. . . . . f f f f f f f f f f . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`) {
         helicopter.setVelocity(40, 0)
+    } else if (helicopter.image == img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+f f f f f f f f f f f f f f . . 
+. . . . . f f f . . . . . . . . 
+. . 8 f f f f f f f . . . . . . 
+. 8 8 f f f f f f f f . . f . f 
+8 8 8 f f f f f f f f f f f f . 
+f f f f f f f f f f f f . f . f 
+. f f f f f f f f f f . . . . . 
+. . f f f f f f f f . . . . . . 
+. . . f . . . . f . . . . . . . 
+f f . f . . . . f . f f . . . . 
+. f f f f f f f f f f . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+`) {
+        helicopter.setVelocity(-40, 0)
     }
 })
