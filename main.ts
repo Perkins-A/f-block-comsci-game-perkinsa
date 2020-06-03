@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const wall = SpriteKind.create()
+    export const Carrier = SpriteKind.create()
 }
 namespace myTiles {
     //% blockIdentity=images._tile
@@ -48,10 +49,7 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . . . . . . . . . . . 
 `, Canon, 0, -50)
     Canon_ball.setVelocity(0, -50)
-    pause(1500)
-})
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Projectile, function (sprite, otherSprite) {
-    paratroop.destroy(effects.spray, 500)
+    pause(200)
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     Canon.x += 4
@@ -59,7 +57,6 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
 controller.left.onEvent(ControllerButtonEvent.Repeated, function () {
     Canon.x += -4
 })
-let paratroop: Sprite = null
 let Canon_ball: Sprite = null
 let Canon: Sprite = null
 scene.setBackgroundImage(img`
@@ -222,7 +219,8 @@ Canon_ball = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
 `, SpriteKind.Projectile)
-Canon_ball.setPosition(0, 0)
+Canon_ball.setFlag(SpriteFlag.Invisible, true)
+Canon_ball.setPosition(-6, 124)
 let helicopter = sprites.create(img`
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
@@ -240,7 +238,7 @@ f . f . f f f f f f f f f f f f
 . . . . . f f f f f f f f f f . 
 . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . 
-`, SpriteKind.Enemy)
+`, SpriteKind.Carrier)
 helicopter.setPosition(0, 8)
 helicopter.y = 8
 let left_wall = sprites.create(img`
@@ -281,6 +279,25 @@ let right_wall = sprites.create(img`
 . . . . . . . . . . . . . . . 3 
 `, SpriteKind.wall)
 right_wall.setPosition(155, 8)
+let paratroop = sprites.create(img`
+. . . . 1 1 1 1 1 1 1 1 1 . . . 
+. . 1 1 1 . . . . . . . 1 1 1 . 
+. 1 . 1 . . . . . . . . . 1 . 1 
+. . . 1 . . . . . . . . . 1 . . 
+. . . . 1 . . f f f . . 1 . . . 
+. . . . 1 . . f f f . . 1 . . . 
+. . . . . 1 . f f f . 1 . . . . 
+. . . . . f . . f . . f . . . . 
+. . . . . . f f f f f . . . . . 
+. . . . . . . . f . . . . . . . 
+. . . . . . . . f . . . . . . . 
+. . . . . . . f f f . . . . . . 
+. . . . . . . f . f . . . . . . 
+. . . . . . . f . f . . . . . . 
+. . . . . . f . . . f . . . . . 
+. . . . . . f . . . f . . . . . 
+`, SpriteKind.Enemy)
+paratroop.setFlag(SpriteFlag.Invisible, true)
 forever(function () {
     if (helicopter.overlapsWith(right_wall)) {
         helicopter.setImage(img`
@@ -325,7 +342,8 @@ f . f . f f f f f f f f f f f f
     }
 })
 forever(function () {
-    paratroop = sprites.createProjectileFromSprite(img`
+    pause(Math.randomRange(1789, 3789))
+    paratroop = sprites.create(img`
 . . . . 1 1 1 1 1 1 1 1 1 . . . 
 . . 1 1 1 . . . . . . . 1 1 1 . 
 . 1 . 1 . . . . . . . . . 1 . 1 
@@ -342,6 +360,15 @@ forever(function () {
 . . . . . . . f . f . . . . . . 
 . . . . . . f . . . f . . . . . 
 . . . . . . f . . . f . . . . . 
-`, helicopter, 0, 15)
-    pause(Math.randomRange(1789, 3789))
+`, SpriteKind.Enemy)
+    paratroop.x = helicopter.x
+    paratroop.setFlag(SpriteFlag.Invisible, false)
+    paratroop.y += -50
+    paratroop.setVelocity(0, 20)
+})
+forever(function () {
+    if (Canon_ball.overlapsWith(paratroop)) {
+        paratroop.destroy()
+        Canon_ball.destroy()
+    }
 })
