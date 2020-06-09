@@ -70,8 +70,12 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
         paratroop.setVelocity(0, 32)
     } else if (info.score() > 70 && info.score() <= 80) {
         paratroop.setVelocity(0, 34)
-    } else if (info.score() > 80) {
+    } else if (info.score() > 80 && info.score() <= 90) {
         paratroop.setVelocity(0, 36)
+    } else if (info.score() > 90 && info.score() <= 100) {
+        paratroop.setVelocity(0, 37)
+    } else if (info.score() < 100) {
+        paratroop.setVelocity(0, 38)
     }
     pause(Math.randomRange(1789, 3789))
 })
@@ -289,6 +293,7 @@ f . f . f f f f f f f f f f f f
 `, SpriteKind.Carrier)
 helicopter.setPosition(0, 8)
 helicopter.y = 8
+helicopter.setVelocity(Math.randomRange(35, 45), 0)
 let left_wall = sprites.create(img`
 3 . . . . . . . . . . . . . . . 
 3 . . . . . . . . . . . . . . . 
@@ -346,6 +351,8 @@ paratroop = sprites.create(img`
 . . . . . . f . . . f . . . . . 
 `, SpriteKind.Enemy)
 paratroop.setFlag(SpriteFlag.Invisible, true)
+paratroop.setFlag(SpriteFlag.StayInScreen, false)
+pause(1000)
 paratroop.x = helicopter.x
 paratroop.setFlag(SpriteFlag.Invisible, false)
 paratroop.y += -50
@@ -391,5 +398,10 @@ f . f . f f f f f f f f f f f f
 . . . . . . . . . . . . . . . . 
 `)
         helicopter.setVelocity(Math.randomRange(35, 45), 0)
+    }
+})
+forever(function () {
+    if (paratroop.y == 115) {
+        game.over(false, effects.melt)
     }
 })
